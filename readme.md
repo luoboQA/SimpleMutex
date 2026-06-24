@@ -50,3 +50,6 @@ SimpleMutex 类包含一个名为 count_ 的 std::atomic 变量和一个名为 s
 通过结合原子变量 count_ 和信号量 sema_，该实现确保等待获取互斥锁的线程能够高效地阻塞，直到当前持有者释放锁。
 ### 基于RAII实现的信号量
 析构时，释放掉信号量，提供等待与唤醒操作，禁止拷贝和赋值的默认实现。
+
+### 运行
+在根目录g++ src/mutex/test.cpp -o test -Ithird/catch2
