@@ -35,7 +35,7 @@ public:
 //            用来等待信号量的值大于0（value > 0），等待时该线程为阻塞状态
 //            解除阻塞后sem值会减去1
             rc = sem_wait(&sema_);
-        } while (rc == 1 && errno == EINTR);
+        } while (rc == -1 && errno == EINTR);
     }
 
     void signal() {
