@@ -100,3 +100,19 @@ T9   |                         | STORE 7 → 内存          | 7
 T10  |                         | unlock()                | 7
 
 结果：执行 2 次 ++，counter = 7 
+```
+代码层面：业务逻辑
+void add() {
+    mutex.lock();   // ① 逻辑：告诉系统"我要进入临界区"
+    counter++;      // ② 业务：要保护的操作
+    mutex.unlock(); // ③ 逻辑：告诉系统"我离开临界区"
+}
+
+硬件层面：CPU 保证原子性
+// 原子操作（硬件层面保证）
+count_.fetch_add(1, std::memory_order_acquire);
+// 底层 CPU 指令：
+// lock add [count], 1
+// ↑ LOCK 前缀让 CPU 保证读-改-写不可分割
+// 保证 LOAD → ADD → STORE 不被中断
+```
