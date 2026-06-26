@@ -1,6 +1,6 @@
 //
 // Created by Dell on 2023/6/30.
-//
+// 互斥锁控制共享数据的访问,固定 1 个线程进入临界区
 #define CATCH_CONFIG_MAIN
 #include "simple_mutex.h"
 #include <iostream>
